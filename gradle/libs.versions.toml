@@ -11,7 +11,6 @@ composeBom = "2024.09.00"
 navigationCompose = "2.8.9"
 supabase = "3.1.1"
 ktor = "3.1.2"
-
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

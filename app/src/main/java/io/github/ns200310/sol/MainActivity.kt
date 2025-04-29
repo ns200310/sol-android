@@ -1,5 +1,6 @@
 package io.github.ns200310.sol
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,21 +27,26 @@ import io.github.ns200310.sol.navigation.NavigationManager
 import io.github.ns200310.sol.ui.theme.SOLTheme
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             SOLTheme {
+
                 // check whether the user is logged in or not
                 val authState by AuthManager().OnAuthStateChanged().collectAsState(initial = false)
 
                 val navController = rememberNavController()
 
+                Scaffold {
                     // Navigation class object
                     NavigationManager().AppNavHost(
                         navController = navController,
-                        isLoggedIn = authState // Change this based on your authentication state
+                        isLoggedIn = authState
+
                     )
+                }
 
 
             }

@@ -1,4 +1,5 @@
 package io.github.ns200310.sol.auth.controllers
+import io.github.jan.supabase.auth.SignOutScope
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.auth.status.SessionSource
@@ -15,11 +16,12 @@ class AuthManager {
                 this.email = email
                 this.password = password
             }
+            emit(AuthResponse.Success)
         }
         catch (e: Exception) {
             emit(
                 AuthResponse.Error(
-                message = e.localizedMessage?:"Unknown error occurred"
+                message = e.message?:"Unknown error occurred"
                 )
             )
         }
@@ -36,7 +38,7 @@ class AuthManager {
         catch (e: Exception) {
             emit(
                 AuthResponse.Error(
-                message = e.localizedMessage?:"Unknown error occurred"
+                message = e.message?:"Unknown error occurred"
                 )
             )
         }
@@ -54,8 +56,37 @@ class AuthManager {
                 }
             }
         } catch (e: Exception) {
-            println("Error: ${e.localizedMessage}")
+            println("Error: ${e.message}")
             emit(false)
+        }
+    }
+    fun SignOutWithEmailAndPassword(): Flow<AuthResponse> = flow {
+        println("Logging out")
+        try {
+            supabase.auth.signOut()
+            emit(AuthResponse.Success)
+            println("Logged out successfully")
+        } catch (e: Exception) {
+
+            emit(
+                AuthResponse.Error(
+                    message = e.localizedMessage ?: "Unknown error occurred"
+                )
+            )
+            println("Error logging out: ${e.localizedMessage}")
+        }
+    }
+
+
+    fun ResetPassword(email: String) :Flow<AuthResponse> = flow {
+        try {
+            supabase.auth.resetPasswordForEmail(email)
+        } catch (e: Exception) {
+            emit(
+                AuthResponse.Error(
+                    message = e.message ?: "Unknown error occurred"
+                )
+            )
         }
     }
 

@@ -1,6 +1,7 @@
 package io.github.ns200310.sol.auth.screens
 
 import android.app.AlertDialog
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -97,7 +98,6 @@ fun LoginScreen(nav: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
@@ -130,12 +130,7 @@ fun LoginScreen(nav: NavController) {
                         }
                         // AlertDialog to show the response message
                         if (responseMessage.isNotEmpty()) {
-                            AlertDialog.Builder(context)
-                                .setMessage(responseMessage)
-                                .setTitle("Message")
-                                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-                                .create()
-                                .show()
+                            Toast.makeText(context, responseMessage, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

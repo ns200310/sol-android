@@ -4,6 +4,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "1.9.10" // Use the Kotlin version you're using
+
+
 }
 
 android {
@@ -71,6 +74,10 @@ dependencies {
     implementation(libs.supabase.storage)
     implementation(libs.supabase.auth)
     implementation(libs.ktor.client.okhttp)
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("io.ktor:ktor-client-cio:2.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
   
 
 }

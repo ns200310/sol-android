@@ -1,5 +1,6 @@
 package io.github.ns200310.sol.auth.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import io.github.ns200310.sol.R
+import io.github.ns200310.sol.auth.controllers.AuthManager
 
 @Composable
 fun ForgotPasswordScreen(nav: NavController) {
@@ -84,10 +86,13 @@ fun ForgotPasswordScreen(nav: NavController) {
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = { /* handle login logic */ },
+            onClick = {
+                var resetP = AuthManager().ResetPassword(email)
+                Toast.makeText(nav.context, resetP.toString(), Toast.LENGTH_SHORT).show()
+            },
             modifier = Modifier.fillMaxWidth(0.9f)
         ) {
-            Text("Login")
+            Text("Send Reset Link")
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(

@@ -12,6 +12,7 @@ import io.github.ns200310.sol.auth.screens.LoginScreen
 import io.github.ns200310.sol.auth.screens.RegisterScreen
 import io.github.ns200310.sol.dashboard.DashboardTabNav
 
+
 class NavigationManager {
     @Composable
     fun AppNavHost(
@@ -34,15 +35,12 @@ class NavigationManager {
             composable("forgot_password") { ForgotPasswordScreen(navController) }
         }
     }
+
     // main
     fun NavGraphBuilder.mainNavGraph(navController: NavHostController) {
         navigation(startDestination = "home_root", route = "main") {
-            composable("home_root") { DashboardTabNav() }
+            composable("home_root") { DashboardTabNav(navController) }
+
         }
     }
-
-
-
-
-
 }
