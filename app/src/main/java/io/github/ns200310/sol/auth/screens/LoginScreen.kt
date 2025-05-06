@@ -126,11 +126,20 @@ fun LoginScreen(nav: NavController) {
                     authManager.SignInWithEmailAndPassword(email, password).collect { response ->
                         when (response) {
                             is AuthResponse.Success -> responseMessage = "Login successful!"
+
+
                             is AuthResponse.Error -> responseMessage = response.message
+
                         }
                         // AlertDialog to show the response message
                         if (responseMessage.isNotEmpty()) {
                             Toast.makeText(context, responseMessage, Toast.LENGTH_SHORT).show()
+                            if (response is AuthResponse.Success) {
+                                nav.navigate("main") {
+                                    popUpTo("auth") { inclusive = true }
+                                }
+
+                            }
                         }
                     }
                 }

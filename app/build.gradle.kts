@@ -4,7 +4,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    kotlin("plugin.serialization") version "1.9.10" // Use the Kotlin version you're using
+    kotlin("plugin.serialization") version "1.9.10"
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 
 
 }
@@ -13,7 +14,7 @@ android {
     namespace = "io.github.ns200310.sol"
     compileSdk = 35
 
-    val file = rootProject.file("local.properties")
+
     val properties = Properties()
 
     defaultConfig {
@@ -24,9 +25,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        properties.load(file.inputStream())
+        properties.load(rootProject.file("local.properties").inputStream())
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"${properties.getProperty("SUPABASE_ANON_KEY")}\"")
         buildConfigField("String", "SUPABASE_URL", "\"${properties.getProperty("SUPABASE_URL")}\"")
+
     }
 
     buildTypes {
@@ -70,14 +72,22 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.navigation)
     implementation(platform(libs.supabase))
+
     implementation(libs.supabase.postgrest)
     implementation(libs.supabase.storage)
     implementation(libs.supabase.auth)
     implementation(libs.ktor.client.okhttp)
-    implementation("io.coil-kt:coil-compose:2.4.0")
-    implementation("io.ktor:ktor-client-cio:2.3.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation(libs.coil.compose)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.kotlinx.serialization.json)
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation ("com.google.accompanist:accompanist-permissions:0.32.0")
+    implementation ("androidx.compose.material:material-icons-extended:1.7.8")
 
-  
+
+
+
+
+
 
 }

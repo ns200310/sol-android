@@ -12,14 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Blue10,
-    secondary = Blue20,
-    tertiary = Black10
+    primary = Orange10,
+    secondary = Black10,
+    tertiary = White10
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Blue10,
-    secondary = Blue20,
+    primary = Orange10,
+    secondary = Black10,
     tertiary = White10
 
     /* Other default colors to override
@@ -43,6 +43,7 @@ fun SOLTheme(
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
+
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 

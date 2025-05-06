@@ -1,18 +1,25 @@
 [versions]
 agp = "8.9.1"
-kotlin = "2.0.21"
+coilCompose = "2.4.0"
+kotlin = "2.1.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxSerializationJson = "1.5.1"
+ktorClientCio = "2.3.0"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 composeBom = "2024.09.00"
 navigationCompose = "2.8.9"
+openaiClientBom = "4.0.1"
 supabase = "3.1.1"
 ktor = "3.1.2"
+kalendar = "2.0.0"
+kalendarFoundation = "2.0.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -28,6 +35,9 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorClientCio" }
+openai-client-bom = { module = "com.aallam.openai:openai-client-bom", version = "4.0.1" }
 supabase = { module="io.github.jan-tennert.supabase:bom", version.ref = "supabase" }
 supabase-auth = { module="io.github.jan-tennert.supabase:auth-kt", version.ref = "supabase" }
 supabase-storage = { module="io.github.jan-tennert.supabase:storage-kt", version.ref = "supabase" }

@@ -1,6 +1,7 @@
 package io.github.ns200310.sol.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -17,14 +18,15 @@ class NavigationManager {
     @Composable
     fun AppNavHost(
         navController: NavHostController = rememberNavController(),
-        isLoggedIn: Boolean
+        isLoggedIn: Boolean,
+        isDarkMode: MutableState<Boolean>,
     ) {
         NavHost(
             navController = navController,
             startDestination = if (isLoggedIn) "main" else "auth"
         ) {
             authNavGraph(navController)
-            mainNavGraph(navController)
+            mainNavGraph(navController, isDarkMode)
         }
     }
     // auth
@@ -37,9 +39,9 @@ class NavigationManager {
     }
 
     // main
-    fun NavGraphBuilder.mainNavGraph(navController: NavHostController) {
+    fun NavGraphBuilder.mainNavGraph(navController: NavHostController, isDarkMode: MutableState<Boolean>) {
         navigation(startDestination = "home_root", route = "main") {
-            composable("home_root") { DashboardTabNav(navController) }
+            composable("home_root") { DashboardTabNav(AppHostNavController = navController, darkTheme = isDarkMode) }
 
         }
     }
